@@ -1,0 +1,59 @@
+{
+    "form": [
+        {
+            "id": 1,
+            "type": "input",
+            "name": "reason",
+            "value": "",
+            "validationType": "string",
+            "label": "Motivo de la solicitud",
+            "validations": [
+                {
+                    "type": "required",
+                    "params": [
+                        "Debe ingresar la solicitud"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "type": "text-area",
+            "name": "details",
+            "value": "",
+            "validationType": "string",
+            "label": "Detalle",
+            "validations": [
+                {
+                    "type": "required",
+                    "params": [
+                        "Debe ingresar el detalle"
+                    ]
+                },
+                {
+                    "type": "max",
+                    "params": [
+                        200,
+                        "No puede pasar los 200 caracteres"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "type": "date-picker",
+            "name": "eventDate",
+            "value": "",
+            "validationType": "string",
+            "label": "Fecha del evento",
+            "validations": [
+                {
+                    "type": "required",
+                    "params": [
+                        "Debe ingresar fecha del evento"
+                    ]
+                }
+            ]
+        }
+    ]
+}

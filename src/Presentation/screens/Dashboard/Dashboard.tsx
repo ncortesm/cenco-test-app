@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Typography } from '@mui/material';
 
 import { NavBar } from '../../components';
-import { ButtonSelector } from './components';
+import { ButtonSelector, CreateFormModal } from './components';
 import { ContainerDashboard, TitleContainer } from './style';
+import { Form } from 'Data/Repository/Models/Form';
 
 const Dashboard = () => {
+    const [formSelected, setFormSelected] = useState<Form>();
+    const [formNameSelected, setFormNameSelected] = useState<string>();
+    const [CreateFormModalOpen, setCreateFormModalOpen] = useState<boolean>(false);
+
     return (
         <>
             {/* BARRA SUPERIOR */}
@@ -16,7 +21,11 @@ const Dashboard = () => {
                     <Typography id="modal-modal-title" variant="h4" color={'gray'}>
                         Formularios enviados
                     </Typography>
-                    <ButtonSelector />
+                    <ButtonSelector
+                        setModalOpen={setCreateFormModalOpen}
+                        setFormSelected={setFormSelected}
+                        setFormNameSelected={setFormNameSelected}
+                    />
                 </TitleContainer>
 
                 <div style={{ height: 300, width: '50%', marginTop: 10 }}>
@@ -34,6 +43,15 @@ const Dashboard = () => {
                     />
                 </div>
             </ContainerDashboard>
+            {/* MODALS */}
+            {CreateFormModalOpen && (
+                <CreateFormModal
+                    modalOpen={CreateFormModalOpen}
+                    setModalOpen={setCreateFormModalOpen}
+                    formSelected={formSelected}
+                    formNameSelected={formNameSelected}
+                />
+            )}
         </>
     );
 };

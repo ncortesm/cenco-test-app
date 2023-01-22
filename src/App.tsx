@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppRouter } from '../src/Presentation/routers';
+import { AppRouter } from 'Presentation/routers';
 
 function App() {
     return <AppRouter />;

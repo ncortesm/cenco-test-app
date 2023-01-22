@@ -1,2 +1,2 @@
-export * from './FormSelectorModal';
+export * from './CreateFormModal';
 export * from './ButtonSelector';
