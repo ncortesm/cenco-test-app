@@ -19,7 +19,6 @@ export const getAll = () => {
 };
 
 export async function create(FormData: any) {
-    console.log(FormData);
     try {
         let { error, result } = await getAll();
         let data = result;

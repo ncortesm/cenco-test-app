@@ -2,22 +2,15 @@ import React, { useState, memo, useCallback, useEffect } from 'react';
 import { Menu, MenuItem, Button } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-import useViewModel from 'Presentation/ViewModel/GetFormsViewModel';
-import { Form } from 'Data/Repository/Models/Form';
+import { FormType } from 'Data/Repository/Models/FormType';
 
 interface ButtonSelectorProps {
     setModalOpen: (state: boolean) => void;
-    setFormSelected: (form: Form) => void;
-    setFormNameSelected: (name: string) => void;
+    setFormSelected: (form: FormType) => void;
+    FormsType: FormType[];
 }
 
-const ButtonSelector = ({
-    setModalOpen,
-    setFormSelected,
-    setFormNameSelected
-}: ButtonSelectorProps) => {
-    /* Obtiene forms desde viewmodel */
-    const { forms, getForms } = useViewModel();
+const ButtonSelector = ({ setModalOpen, setFormSelected, FormsType }: ButtonSelectorProps) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
@@ -27,11 +20,6 @@ const ButtonSelector = ({
 
     const handleClose = useCallback(() => {
         setAnchorEl(null);
-    }, []);
-
-    /* Obtener Forms Type */
-    useEffect(() => {
-        getForms();
     }, []);
 
     return (
@@ -55,13 +43,12 @@ const ButtonSelector = ({
                 MenuListProps={{
                     'aria-labelledby': 'selector-button'
                 }}>
-                {forms?.map((item, index) => {
+                {FormsType?.map((item, index) => {
                     return (
                         <MenuItem
                             onClick={() => {
                                 setModalOpen(true);
-                                setFormSelected(item.form);
-                                setFormNameSelected(item.name);
+                                setFormSelected(item);
                             }}
                             key={index}>
                             {item.name}
