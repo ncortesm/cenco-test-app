@@ -1,0 +1,52 @@
+{
+    "form": [
+        {
+            "id": 1,
+            "type": "date-picker",
+            "name": "fromDate",
+            "value": "",
+            "validationType": "date",
+            "label": "Desde",
+            "validations": [
+                {
+                    "type": "required",
+                    "params": [
+                        "Debe ingresar fecha"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "type": "date-picker",
+            "name": "untilDate",
+            "value": "",
+            "validationType": "date",
+            "label": "Hasta",
+            "validations": [
+                {
+                    "type": "required",
+                    "params": [
+                        "Debe ingresar fecha"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "type": "file",
+            "name": "file",
+            "value": "",
+            "validationType": "mixed",
+            "label": "Cargar Archivo",
+            "validations": [
+                {
+                    "type": "required",
+                    "params": [
+                        "Debe ingresar archivo"
+                    ]
+                }
+            ]
+        }
+    ]
+}
