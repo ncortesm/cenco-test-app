@@ -10,3 +10,8 @@ export const TitleContainer = styled(Box)({
     justifyContent: 'space-between',
     marginBottom: '5%'
 });
+
+export const BoxTables = styled(Box)({
+    justifyContent: 'space-between',
+    marginBottom: '5%'
+});
