@@ -6,7 +6,6 @@ import { ModalBoxStyle } from '../CreateFormModal/style';
 import useGetFormByIdViewModel from 'Presentation/ViewModel/GetFormByIdViewModel';
 import { dataFormDTO } from 'Data/Repository/Models/FormDataDTO';
 import { FieldType } from 'Presentation/types/fieldType';
-import FileView from '../DynamicField/FileView';
 
 interface DetailFormModalProps {
     modalOpen: boolean;
@@ -20,10 +19,6 @@ const DetailFormModal = ({ modalOpen, setModalOpen, ReadingFormId }: DetailFormM
     useEffect(() => {
         getFormById(ReadingFormId);
     }, []);
-
-    useEffect(() => {
-        console.log(FormById);
-    }, [FormById]);
 
     return (
         <Modal open={modalOpen} onClose={() => setModalOpen(!modalOpen)}>
