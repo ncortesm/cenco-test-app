@@ -12,7 +12,7 @@ import { createYupSchema, extractInitialValues } from 'Presentation/helpers/Form
 import { DynamicField } from '../DynamicField';
 import { CustomFormatSave } from 'Presentation/helpers/FormSaveFormat';
 
-interface FormSelectorModal {
+interface FormSelectorModalProps {
     setModalOpen: (open: boolean) => void;
     modalOpen: boolean;
     formSelected: FormType | undefined;
@@ -24,7 +24,7 @@ const FormSelectorModal = ({
     modalOpen,
     formSelected,
     saveForm
-}: FormSelectorModal) => {
+}: FormSelectorModalProps) => {
     const yupSchema = formSelected?.formObject?.form.reduce(createYupSchema, {});
     const validatedSchema = yup.object().shape(yupSchema);
 

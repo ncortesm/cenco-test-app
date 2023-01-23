@@ -5,7 +5,7 @@ const CreateFormViewModel = () => {
     const [resultSave, setResultSave] = useState<boolean>(false);
 
     const saveForm = async (data: any) => {
-        const { result, error } = await CreateFormUseCase(data);
+        const { result } = await CreateFormUseCase(data);
         setResultSave(result);
     };
 
