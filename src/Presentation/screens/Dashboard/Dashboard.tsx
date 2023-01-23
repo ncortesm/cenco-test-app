@@ -5,7 +5,7 @@ import { NavBar } from '../../components';
 import { ButtonSelector, CreateFormModal } from './components';
 import { ContainerDashboard, TitleContainer, BoxTables, BoxEmpty } from './style';
 import { FormType } from 'Data/Repository/Models/FormType';
-import { DashboardTables } from './components/DashboardTables';
+import { DashboardTables, DetailFormModal } from './components/';
 import useViewModelGetForms from 'Presentation/ViewModel/GetFormsViewModel';
 import useViewModelGetAllDataForm from 'Presentation/ViewModel/GetAllFormsDataViewModel';
 import useSaveFormViewModel from 'Presentation/ViewModel/CreateFormViewModel';
@@ -20,6 +20,8 @@ const Dashboard = () => {
     //STATE HANDLER
     const [formSelected, setFormSelected] = useState<FormType>();
     const [CreateFormModalOpen, setCreateFormModalOpen] = useState<boolean>(false);
+    const [DetailFormModalOpen, setDetailFormModalOpen] = useState<boolean>(false);
+    const [ReadingFormId, setReadingFormId] = useState<string | undefined>();
 
     /* Obtener Forms Type */
     useEffect(() => {
@@ -67,7 +69,9 @@ const Dashboard = () => {
                                 <DashboardTables
                                     key={index}
                                     FormData={item}
-                                    dataForm={AllDataForms}
+                                    StorageData={AllDataForms}
+                                    setDetailFormModalOpen={setDetailFormModalOpen}
+                                    setReadingFormId={setReadingFormId}
                                 />
                             );
                         })}
@@ -81,6 +85,13 @@ const Dashboard = () => {
                     setModalOpen={setCreateFormModalOpen}
                     formSelected={formSelected}
                     saveForm={saveForm}
+                />
+            )}
+            {DetailFormModalOpen && ReadingFormId && (
+                <DetailFormModal
+                    modalOpen={DetailFormModalOpen}
+                    setModalOpen={setDetailFormModalOpen}
+                    ReadingFormId={ReadingFormId}
                 />
             )}
         </>
