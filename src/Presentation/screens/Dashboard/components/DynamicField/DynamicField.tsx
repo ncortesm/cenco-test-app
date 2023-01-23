@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useRef, ChangeEvent } from 'react';
 import {
     Box,
     Typography,
@@ -6,19 +6,35 @@ import {
     Select,
     MenuItem,
     FormControl,
-    FormHelperText
+    FormHelperText,
+    Button
 } from '@mui/material';
 import { DatePicker } from 'formik-mui-x-date-pickers';
-import { Field, useField } from 'formik';
+import { Field, useField, ErrorMessage } from 'formik';
 
 import { FormInput } from 'Data/Repository/Models/Form';
+import FileView from './FileView';
 
 interface DynamicFieldProps {
     Form: FormInput;
+    setFieldValue: any;
 }
 
-const DynamicField = ({ Form }: DynamicFieldProps) => {
+const DynamicField = ({ Form, setFieldValue }: DynamicFieldProps) => {
     const [field, meta] = useField(Form.name);
+    const inputRef = useRef<HTMLInputElement | null>(null);
+
+    //File Helpers
+    const handleUploadClick = () => {
+        inputRef.current?.click();
+    };
+
+    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files) {
+            return;
+        }
+        setFieldValue(Form.name, e.target.files[0]);
+    };
 
     const FormComponents: any = {
         input: (
@@ -80,6 +96,32 @@ const DynamicField = ({ Form }: DynamicFieldProps) => {
                         fullWidth: true
                     }}
                 />
+            </Box>
+        ),
+        file: (
+            <Box key={Form.id}>
+                <Button
+                    color="primary"
+                    variant="contained"
+                    onClick={handleUploadClick}
+                    disabled={field.value ? true : false}>
+                    Subir archivo
+                </Button>
+                <input
+                    hidden
+                    name={Form.name}
+                    type="file"
+                    ref={inputRef}
+                    onChange={handleFileChange}
+                />
+                {field.value && <FileView file={field.value} />}
+                <ErrorMessage name={Form.name}>
+                    {(msg) => (
+                        <Box mt={'3%'} color={'red'}>
+                            {msg}
+                        </Box>
+                    )}
+                </ErrorMessage>
             </Box>
         )
     };
