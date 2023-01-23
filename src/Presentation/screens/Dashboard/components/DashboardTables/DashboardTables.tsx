@@ -22,6 +22,7 @@ const DashboardTables = ({
         setReadingFormId(params.row.id);
         setDetailFormModalOpen(true);
     };
+
     const FilteredForms = StorageData?.filter((item) => item.formId === FormData.id);
 
     return (
