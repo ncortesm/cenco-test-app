@@ -23,9 +23,8 @@ export const getAll = () => {
 
 export const create = async (FormData: FormDataDTO) => {
     try {
-        let { error, result } = await getAll();
+        let { result } = await getAll();
         let data = result;
-        console.log(FormData);
         FormData.id = uuid();
         data.push(FormData);
         window.localStorage.setItem(FORMS, JSON.stringify(data));
