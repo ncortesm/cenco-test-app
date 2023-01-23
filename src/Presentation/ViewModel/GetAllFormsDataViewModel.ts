@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { GetFormsDataUseCase } from 'Domain/UseCase/Form/getFormsData';
-import { QueryResponse } from 'Data/Repository/Models/Response';
 
 const GetFormsViewModel = () => {
     //Forms

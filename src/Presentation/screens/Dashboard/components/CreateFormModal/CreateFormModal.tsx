@@ -10,6 +10,7 @@ import { FormType } from 'Data/Repository/Models/FormType';
 import { ModalBoxStyle } from './style';
 import { createYupSchema, extractInitialValues } from 'Presentation/helpers/FormValidationHelpers';
 import { DynamicField } from '../DynamicField';
+import { CustomFormatSave } from 'Presentation/helpers/FormSaveFormat';
 
 interface FormSelectorModal {
     setModalOpen: (open: boolean) => void;
@@ -43,7 +44,8 @@ const FormSelectorModal = ({
                         initialValues={extractInitialValues(formSelected?.formObject?.form!)}
                         validationSchema={validatedSchema}
                         onSubmit={(values) => {
-                            saveForm({ formId: formSelected?.id, ...values });
+                            const CustomSave = CustomFormatSave(values, formSelected!);
+                            saveForm(CustomSave);
                         }}>
                         {({ setFieldValue }) => (
                             <Form>
