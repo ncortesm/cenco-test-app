@@ -5,7 +5,7 @@ const GetFormByIdViewModel = () => {
     const [FormById, setFormById] = useState<any>();
 
     const getFormById = async (id: string) => {
-        const { result, error } = await GetFormByIdUseCase(id);
+        const { result } = await GetFormByIdUseCase(id);
         setFormById({ ...result });
     };
 
