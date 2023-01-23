@@ -15,3 +15,9 @@ export const BoxTables = styled(Box)({
     justifyContent: 'space-between',
     marginBottom: '5%'
 });
+
+export const BoxEmpty = styled(Box)({
+    marginTop: '10%',
+    display: 'flex',
+    justifyContent: 'center'
+});

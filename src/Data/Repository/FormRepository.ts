@@ -1,4 +1,4 @@
-import { getAllForms, create } from '../DataSource';
+import { getAllForms, create, getAll } from '../DataSource';
 import { FormType } from './Models/FormType';
 
 export const FormRepository = {
@@ -8,9 +8,13 @@ export const FormRepository = {
             (formtype): FormType => ({
                 id: formtype.id,
                 name: formtype.name,
-                form: formtype.form
+                formObject: formtype.formObject
             })
         );
+    },
+    getAllFormsData: async () => {
+        const { result, error } = await getAll();
+        return { result: result, error: error };
     },
     createForm: async (data: any) => {
         const { result, error } = await create(data);

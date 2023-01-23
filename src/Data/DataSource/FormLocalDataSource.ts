@@ -12,9 +12,9 @@ export const getAll = () => {
         if (dataString) {
             data = JSON.parse(dataString);
         }
-        return Promise.resolve({ error: null, result: data });
+        return Promise.resolve({ error: false, result: data });
     } catch (err) {
-        return Promise.resolve({ error: err, result: null });
+        return Promise.resolve({ error: true, result: null });
     }
 };
 
@@ -25,8 +25,8 @@ export async function create(FormData: any) {
         FormData.id = new Date().getTime().toString();
         data.push(FormData);
         window.localStorage.setItem(FORMS, JSON.stringify(data));
-        return Promise.resolve({ error: null, result: true });
+        return Promise.resolve({ error: false, result: true });
     } catch (error) {
-        return Promise.resolve({ error: error, result: true });
+        return Promise.resolve({ error: true, result: true });
     }
 }

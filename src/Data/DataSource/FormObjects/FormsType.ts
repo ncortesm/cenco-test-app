@@ -6,16 +6,16 @@ export const FormsType = [
     {
         id: 1,
         name: 'Formulario 1',
-        form: FormObject1
+        formObject: FormObject1
     },
     {
         id: 2,
         name: 'Formulario 2',
-        form: FormObject2
+        formObject: FormObject2
     },
     {
         id: 3,
         name: 'Formulario 3',
-        form: FormObject3
+        formObject: FormObject3
     }
 ];

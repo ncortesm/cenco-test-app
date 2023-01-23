@@ -10,17 +10,21 @@ import { FormType } from 'Data/Repository/Models/FormType';
 import { ModalBoxStyle } from './style';
 import { createYupSchema, extractInitialValues } from 'Presentation/helpers/FormValidationHelpers';
 import { DynamicField } from '../DynamicField';
-import useViewModel from 'Presentation/ViewModel/CreateFormViewModel';
 
 interface FormSelectorModal {
     setModalOpen: (open: boolean) => void;
     modalOpen: boolean;
     formSelected: FormType | undefined;
+    saveForm: (data: any) => void;
 }
 
-const FormSelectorModal = ({ setModalOpen, modalOpen, formSelected }: FormSelectorModal) => {
-    const { saveForm } = useViewModel();
-    const yupSchema = formSelected?.form?.form.reduce(createYupSchema, {});
+const FormSelectorModal = ({
+    setModalOpen,
+    modalOpen,
+    formSelected,
+    saveForm
+}: FormSelectorModal) => {
+    const yupSchema = formSelected?.formObject?.form.reduce(createYupSchema, {});
     const validatedSchema = yup.object().shape(yupSchema);
 
     return (
@@ -36,16 +40,22 @@ const FormSelectorModal = ({ setModalOpen, modalOpen, formSelected }: FormSelect
                 {/* Formulario */}
                 <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={es}>
                     <Formik
-                        initialValues={extractInitialValues(formSelected?.form?.form!)}
+                        initialValues={extractInitialValues(formSelected?.formObject?.form!)}
                         validationSchema={validatedSchema}
                         onSubmit={(values) => {
                             saveForm({ formId: formSelected?.id, ...values });
                         }}>
-                        {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) => (
+                        {({ setFieldValue }) => (
                             <Form>
                                 <Box mt={'10%'} mb={'15%'}>
-                                    {formSelected?.form?.form.map((item, index) => {
-                                        return <DynamicField Form={item} key={index} />;
+                                    {formSelected?.formObject?.form.map((item, index) => {
+                                        return (
+                                            <DynamicField
+                                                Form={item}
+                                                key={index}
+                                                setFieldValue={setFieldValue}
+                                            />
+                                        );
                                     })}
                                 </Box>
                                 <Button

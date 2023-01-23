@@ -1,15 +1,19 @@
 import { useState } from 'react';
 import { CreateFormUseCase } from 'Domain/UseCase/Form/CreateForm';
-import { FormType } from 'Data/Repository/Models/FormType';
 
 const CreateFormViewModel = () => {
-    async function saveForm(data: any) {
+    const [resultSave, setResultSave] = useState<boolean>(false);
+
+    const saveForm = async (data: any) => {
         console.log(data);
-        //const { result, error } = await CreateFormUseCase(data);
-    }
+        const { result, error } = await CreateFormUseCase(data);
+        setResultSave(result);
+    };
 
     return {
-        saveForm
+        saveForm,
+        resultSave,
+        setResultSave
     };
 };
 
