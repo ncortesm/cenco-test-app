@@ -1,5 +1,8 @@
 ## SCRIPTS
 
+### `Pasos Previos`
+Luego de clonar del proyecto, ejecutar npm install en directorio.
+
 ### `npm start`
 
 Runs the app in the development mode.\
