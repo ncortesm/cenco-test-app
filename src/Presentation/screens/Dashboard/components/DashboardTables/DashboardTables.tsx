@@ -22,9 +22,9 @@ const DashboardTables = ({
         setReadingFormId(params.row.id);
         setDetailFormModalOpen(true);
     };
-    
+    /* Filtra los registros que correspondan a la vista actual */
     const FilteredForms = StorageData?.filter((item) => item.formId === FormData.id);
-    
+
     return (
         <>
             {FilteredForms!.length > 0 ? (
