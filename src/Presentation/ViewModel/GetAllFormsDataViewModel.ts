@@ -6,7 +6,7 @@ const GetFormsViewModel = () => {
     const [AllDataForms, setAllDataForms] = useState<any[]>();
 
     const getAllDataForms = async () => {
-        const { error, result } = await GetFormsDataUseCase();
+        const { result } = await GetFormsDataUseCase();
         setAllDataForms(result);
     };
 

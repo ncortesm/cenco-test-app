@@ -1,5 +1,3 @@
-import { Box, styled } from '@mui/material';
-
 export const ModalBoxStyle = {
     position: 'absolute' as 'absolute',
     top: '50%',
